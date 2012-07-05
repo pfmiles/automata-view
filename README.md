@@ -6,7 +6,7 @@ Scripts to convert automatons to visible png images.
 Example: test.py:  
 
 	from automataview import states_to_dot
-	# for test
+	# A simple state object that has implemented 'is_final', 'get_id' and 'get_transitions' methods, for test
 	class state(object):
 	    # n: state num
 	    # transitMap: edge -> nextState mapping

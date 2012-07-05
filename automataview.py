@@ -17,8 +17,7 @@ class graph(object):
         self.transitions.add((start, end, edge))
         
     def to_dot_string(self):
-        allTemp = """
-        digraph %s {
+        allTemp = """digraph %s {
             rankdir=LR;
             size="%s,%s"
             node [shape = doublecircle]; %s;
@@ -35,13 +34,13 @@ def states_to_dot(name, length, width, states):
     """
     every 'state' instance in 'states' parameter is required to have these methods:
     is_final returns True/False indicates whether this is a final state
-    get_transitions of return type {edge -> state} represents all valid transitions started from this state
+    get_transitions of return type [(edge, state)] represents all valid transitions started from this state
     get_id returned value as the state's displaying name
     """
     g = graph(name, length, width)
     for s in states:
         g.add_state(s.get_id(), s.is_final())
-        for (edge, os) in s.get_transitions().iteritems():
+        for (edge, os) in s.get_transitions():
             g.add_transition(s.get_id(), os.get_id(), edge)
             
     return g.to_dot_string()
